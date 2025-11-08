@@ -1,0 +1,108 @@
+<<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Test</title>
+</head>
+<body>
+    <form action="action_page.php">
+    <table border="1">
+
+    	<!--Requirement 1 -->
+        <tr> 
+    		<td colspan = "3" align ="center">About -- 114306037</b></td>
+    	</tr>
+
+        <!--Requirement 2 -->
+        <tr>
+        	<td rowspan = "3">
+                <img src = "mypic.jpg" width = "100px" height = "135px"><br>
+                <div style="text-align: center;">
+                    personal photo
+                </div>
+        	</td>   
+
+            <td colspan="2"> 
+                Name:
+                <input name = "name" type = "text" size = "25" maxlength = "30"><br>
+                Gender:
+                <label><input type="radio" name="gender" value="male">Male</label>
+                <label><input type="radio" name="gender" value="female">Female</label>
+                <label><input type="radio" name="gender" value="other">Other</label>
+            </td>
+        </tr>
+
+        <tr>
+            <td> Country:
+            <label>
+                <select name="Country">
+                    <option value="taipei">Taipei</option>
+                    <option value="tainan">Tainan</option>
+                    <option value="taichung">Taichung</option>
+                    <option value="taoyuan">Taoyuan</option>
+                </select>
+            </label>
+            </td>
+
+            <td>Birthday:
+            <label>
+                <input type="date" name="Birthday">
+            </label>
+            </td>
+        </tr>  
+
+        <tr>
+        	<td colspan = "2"> E-mail:
+                <label>
+                <input type="email" name="E-mail">
+                </label>
+            </td>
+        </tr>
+
+
+        <!--Requirement 3-->
+        <tr>
+            <td>Hobby</td>
+            <td colspan="2">
+                <label>
+                <input type="checkbox"name="Hobby"value="swimming">Swimming
+                <input type="checkbox"name="Hobby"value="volleyball">Volleyball
+                <input type="checkbox"name="Hobby"value="movie">Movie
+                <input type="checkbox"name="Hobby"value="game">Game
+                <input type="checkbox"name="Hobby"value="sleep">Sleep
+                </label>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Skill</td>
+            <td colspan="2">
+            <label>
+                <input type="checkbox"name="Skill"value="java">Java
+                <input type="checkbox"name="Skill"value="html">HTML
+                <input type="checkbox"name="Skill"value="python">Python
+                <input type="checkbox"name="Skill"value="microsoft office">Microsoft Office
+                <input type="checkbox"name="Skill"value="premiere">Premiere
+                </label>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Say Something</td>
+            <td colspan="2">
+                <textarea placeholder="Say something here." rows="4" cols="50"></textarea>
+            </td>    
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" value="提交">
+                <input type="reset" value="重設">
+            </td>
+        </tr>
+
+    </table>
+    </form>
+
+</body>
+</html>
