@@ -1,0 +1,53 @@
+.navbar {
+    position : relative;
+    list-style: none;
+    display: flex;
+    justify-content: space-between; /* 平等間距 */
+    background-color: darkblue; 
+    padding: 5px;              
+    margin: 0;   /* 移除預設 margin */
+}
+
+.navbar li {
+    flex: 1;  
+    text-align: center;
+    position : relative;
+}
+
+.navbar li .dropdown {
+    display: none;  /* 隱藏 */
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: navy;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 150px;
+    text-align: left;
+    z-index: 1000;
+}
+
+/* 滑鼠移至時顯示下拉 */
+.navbar li:hover .dropdown {
+    display: block;
+}
+
+/* 下拉選單 */
+.navbar li .dropdown li {
+    padding: 10px 15px;
+    white-space: nowrap;
+    color: white;
+}
+
+/* 滑鼠 hover 子選單顏色 */
+.navbar li .dropdown li:hover {
+    background-color: royalblue;
+}
+
+.content {
+    background-color: lightgray;
+    margin: 0;
+    padding: 20px;
+}
