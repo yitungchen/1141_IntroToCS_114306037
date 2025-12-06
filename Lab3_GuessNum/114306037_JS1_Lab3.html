@@ -1,0 +1,78 @@
+<<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>114306037_JS1_Lab3</title>
+</head>
+
+<body>
+    <h1>114306037_Number Guessing</h1>
+    <div id="resultArea"></div>
+    <script>
+        // random answers
+        var answer = Math.floor(Math.random() * 100) + 1;
+        var chances = 7;
+        var min = 1;
+        var max = 100;
+
+        while (chances > 0) {
+            var input = window.prompt(
+                "請輸入一個數字 (" + min + " 到 " + max + ")\n" +
+                "剩餘次數: " + chances
+            );
+
+            // check
+            if (input === null) {
+            alert("遊戲結束！");
+            break;
+            }
+
+            input = input.trim();
+
+        // if no input or wrong input
+        if (input === "" || isNaN(input)) {
+            alert("請輸入有效的數字！");
+            continue;
+            }
+
+            var guess = Number(input);
+
+        // in the range
+        if (guess < min || guess > max) {
+            alert("請輸入範圍內的數字！");
+            continue;
+            }
+
+        // evaluate the answer
+        if (guess === answer) {
+            alert("恭喜猜對了！答案是 " + answer);   
+
+        // insert correct picture
+         document.getElementById("resultArea").innerHTML =
+                    '<img src="correct.jpg" width="300">';
+
+                break;
+            } else if (guess > answer) {
+                alert("再小一點！");
+                max = guess - 1;
+            } else {
+                alert("再大一點！");
+                min = guess + 1;
+            }
+
+            chances--;
+        }
+
+        // chances exhausted
+        if (chances === 0) {
+            alert("很可惜，你用完所有機會了！正確答案是 " + answer);
+
+            // 插入 wrong.jpg
+            document.getElementById("resultArea").innerHTML =
+                '<img src="wrong.jpg" width="300">';
+        }
+
+    </script>
+
+</body>
+</html>
