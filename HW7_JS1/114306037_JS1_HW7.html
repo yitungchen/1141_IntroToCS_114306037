@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StudentID_HW7_1A2B</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+        #record {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #888;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>StudentID_HW7_1A2B</h1>
+
+<input type="text" id="guessInput" placeholder="輸入四位數">
+<button onclick="play()">Guess</button>
+
+<div id="record"></div>
+
+<script>
+    // generate answers
+    function generateAnswer() {
+        let digits = [0,1,2,3,4,5,6,7,8,9];
+        let answer = "";
+
+        for (let i = 0; i < 4; i++) {
+            let idx = Math.floor(Math.random() * digits.length);
+            answer += digits[idx];
+            digits.splice(idx, 1);
+        }
+        return answer;
+    }
+
+    let answer = generateAnswer();
+    let count = 0;
+
+    console.log("答案（測試用）:", answer);
+
+    // check input
+    function isValid(str) {
+        if (str.length !== 4) return false;
+        if (!/^[0-9]{4}$/.test(str)) return false;
+
+        // check repeat
+        let set = new Set(str);
+        return set.size === 4;
+    }
+
+    // calculation
+    function checkAB(guess, ans) {
+        let A = 0, B = 0;
+
+        for (let i = 0; i < 4; i++) {
+            if (guess[i] === ans[i]) {
+                A++;
+            } else if (ans.includes(guess[i])) {
+                B++;
+            }
+        }
+        return `${A}A${B}B`;
+    }
+
+    function play() {
+        let input = document.getElementById("guessInput");
+        let guess = input.value.trim();
+
+        if (!isValid(guess)) {
+            alert("請輸入四個不重複的數字！");
+            input.value = "";
+            return;
+        }
+
+        count++;
+        let result = checkAB(guess, answer);
+
+        // display
+        let record = document.getElementById("record");
+        record.innerHTML += `第 ${count} 次：${guess} → ${result}<br>`;
+
+        // correct
+        if (result === "4A0B") {
+            alert(`恭喜答對！總共猜了 ${count} 次！`);
+        }
+
+        input.value = "";
+    }
+</script>
+
+</body>
+</html>
