@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grade Statistics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    input {
+      margin-right: 10px;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+      width: 400px;
+    }
+
+    th, td {
+      border: 1px solid #333;
+      padding: 8px;
+      text-align: center;
+    }
+
+    tfoot {
+      font-weight: bold;
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Grade Statistics</h2>
+
+  Math:
+  <input type="number" id="math" />
+  English:
+  <input type="number" id="english" />
+  <button id="submitBtn">Submit</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Math</th>
+        <th>English</th>
+        <th>Average</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+    </tbody>
+    <tfoot>
+      <tr>
+        <td id="mathAvg">0</td>
+        <td id="englishAvg">0</td>
+        <td id="overallAvg">0</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <script>
+    const submitBtn = document.getElementById("submitBtn");
+    const tableBody = document.getElementById("tableBody");
+
+    submitBtn.addEventListener("click", function () {
+      const math = Number(document.getElementById("math").value);
+      const english = Number(document.getElementById("english").value);
+
+      if (isNaN(math) || isNaN(english)) {
+        alert("Please enter valid numbers.");
+        return;
+      }
+
+      const avg = ((math + english) / 2).toFixed(2);
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${math}</td>
+        <td>${english}</td>
+        <td>${avg}</td>
+      `;
+      tableBody.appendChild(row);
+
+      updateColumnAverages();
+    });
+
+    function updateColumnAverages() {
+      const rows = tableBody.getElementsByTagName("tr");
+      let mathSum = 0;
+      let englishSum = 0;
+
+      for (let row of rows) {
+        mathSum += Number(row.children[0].innerText);
+        englishSum += Number(row.children[1].innerText);
+      }
+
+      const count = rows.length;
+      const mathAvg = (mathSum / count).toFixed(2);
+      const englishAvg = (englishSum / count).toFixed(2);
+      const overallAvg = ((mathSum + englishSum) / (count * 2)).toFixed(2);
+
+      document.getElementById("mathAvg").innerText = mathAvg;
+      document.getElementById("englishAvg").innerText = englishAvg;
+      document.getElementById("overallAvg").innerText = overallAvg;
+    }
+  </script>
+
+</body>
+</html>
